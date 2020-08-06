@@ -4,11 +4,11 @@ const app = getApp()
 
 Page({
   data: {
+    picUrl: '',
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    background: 'https://www.smallyy.cn/wp-content/uploads/2020/08/抽签2.0-1.png'
+    canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
   //事件处理函数
   bindViewTap: function() {
@@ -16,7 +16,16 @@ Page({
       url: '../logs/logs'
     })
   },
-  onLoad: function () {
+  onLoad: function (options) {
+    this.pic = options.pic
+    var picUrls = [
+      ['https://www.smallyy.cn/wp-content/uploads/2020/08/抽签2.0-1.png'],
+      ['https://www.smallyy.cn/wp-content/uploads/2020/08/抽签2.0-1.png'],
+      ['https://www.smallyy.cn/wp-content/uploads/2020/08/抽签2.0-1.png'],
+      ['https://www.smallyy.cn/wp-content/uploads/2020/08/抽签2.0-1.png']
+    ]
+    var arr = picUrls[this.pic]
+    this.setData({ picUrl: picUrls[this.pic][Math.floor(Math.random()*arr.length)] })
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -50,16 +59,6 @@ Page({
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
-    })
-  },
-  click(e) {
-    wx.getSystemInfo({
-      success: (result) => {
-        var i = Math.max(0, Math.floor((e.changedTouches[0].pageX/result.windowWidth-0.02) * 4))
-        wx.navigateTo({
-          url: '../share/index?pic=' + i,
-        })
-      },
     })
   }
 })
