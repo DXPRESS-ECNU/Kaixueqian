@@ -1,10 +1,20 @@
 //app.js
 App({
   onLaunch: function () {
-    // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
+    // Download CONFIG file
+    var fs = wx.getFileSystemManager()
+    wx.downloadFile({
+      url:  this.globalData.URL_PREFIX + 'config.json',
+      success: res => {
+        console.log(res.tempFilePath)
+        this.globalData.CONFIG = JSON.parse(fs.readFileSync(res.tempFilePath, "utf8").toString())
+        console.log(this.globalData.CONFIG)
+        if (this.downloadConfigCallback){
+          this.downloadConfigCallback()
+        }
+      },
+      fail: console.error
+    })
 
     // 登录
     wx.login({
@@ -34,6 +44,8 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    URL_PREFIX: "https://miniprogram-1301390525.file.myqcloud.com/Kaixueqian/",
+    CONFIG : null
   }
 })

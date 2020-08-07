@@ -8,7 +8,8 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    background: 'https://www.smallyy.cn/wp-content/uploads/2020/08/抽签2.0-1.png'
+    CONFIG: {},
+    URL_PREFIX: ''
   },
   //事件处理函数
   bindViewTap: function() {
@@ -42,6 +43,19 @@ Page({
           })
         }
       })
+    }
+    if (app.globalData.CONFIG) {
+      this.setData({
+        CONFIG: app.globalData.CONFIG,
+        URL_PREFIX: app.globalData.URL_PREFIX
+      })
+    } else {
+      app.downloadConfigCallback = () => {
+        this.setData({
+          CONFIG: app.globalData.CONFIG,
+          URL_PREFIX: app.globalData.URL_PREFIX
+        })
+      }
     }
   },
   getUserInfo: function(e) {

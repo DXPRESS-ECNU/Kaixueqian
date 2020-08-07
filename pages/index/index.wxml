@@ -1,10 +1,11 @@
 <!--index.wxml-->
-<view
-  id="background"
-  style="width:100%;min-height:100%;background-image:url({{background}});background-size:100% 100%;"
-  bindtap="click"
->
-  <view>
-    
+
+<view class="container">
+  <view class="card-grid">
+    <view wx:for="{{CONFIG}}" wx:for-item="card" wx:for-index="idx" class="grid-item">
+      <image class="card-image" src="{{URL_PREFIX + card.titleimage}}" />
+    </view>
+  </view>
+  <view class="footer">
   </view>
 </view>
