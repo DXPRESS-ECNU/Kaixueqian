@@ -12,8 +12,6 @@ page {
   justify-content: space-evenly;
   flex-wrap: nowrap;
   width: 100%;
-  padding-top: 30rpx;
-  padding-bottom: 20rpx;
 }
 
 .grid-item{
@@ -31,5 +29,36 @@ page {
 }
 
 .footer{
-  
+  width: 100%;
+  align-items: center;
+}
+
+.cover-view {
+  position: absolute;
+  top: 50rpx;
+  left: 50rpx;
+  right: 50rpx;
+  align-items: center;
+}
+
+.cover-image {
+  width: 100%;
+  align-items: center;
+  margin-bottom: 25rpx;
+}
+
+.button-view {
+  width: 45%;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.button {
+  width: 100%
 }

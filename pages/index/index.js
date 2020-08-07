@@ -9,7 +9,11 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     CONFIG: {},
-    URL_PREFIX: ''
+    URL_PREFIX: null,
+    choose: null,
+    outputConfig: {},
+    isauth: true,
+    exportbtnText: "分享图片"
   },
   //事件处理函数
   bindViewTap: function() {
@@ -74,6 +78,22 @@ Page({
           url: '../share/index?pic=' + i,
         })
       },
+    })
+  },
+  bindGetTicket: function(event) {
+    var id = event.currentTarget.dataset.index
+    var items = this.data.CONFIG[id].items
+    var choose = items[Math.floor(Math.random() * items.length)]
+    this.setData({
+      choose,
+      outputConfig: {avatarposi: this.data.CONFIG[id].avatarposi, nicknameposi: this.data.CONFIG[id].nicknameposi}
+    })
+    console.log(this.data.choose)
+    console.log(this.data.outputConfig)
+  },
+  bindReChoose: function() {
+    this.setData({
+      choose : null
     })
   }
 })
