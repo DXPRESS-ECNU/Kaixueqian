@@ -35,9 +35,9 @@ page {
 
 .cover-view {
   position: absolute;
-  top: 50rpx;
-  left: 50rpx;
-  right: 50rpx;
+  top: 35rpx;
+  left: 60rpx;
+  right: 60rpx;
   align-items: center;
 }
 
@@ -61,4 +61,8 @@ page {
 
 .button {
   width: 100%
+}
+
+.blur {
+  filter: blur(10rpx)
 }

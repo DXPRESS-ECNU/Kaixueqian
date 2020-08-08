@@ -46,6 +46,7 @@ App({
   globalData: {
     userInfo: null,
     URL_PREFIX: "https://miniprogram-1301390525.file.myqcloud.com/Kaixueqian/",
-    CONFIG : null
+    CONFIG : null,
+    INDEX: null
   }
 })

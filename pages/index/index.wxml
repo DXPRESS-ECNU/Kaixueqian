@@ -1,22 +1,28 @@
 <!--index.wxml-->
 
 <view class="container">
-  <view class="card-grid">
-    <view class="grid-item" wx:for="{{CONFIG}}" wx:for-item="card" bindtap="bindGetTicket" data-index='{{index}}'>
-      <image class="card-image" src="{{URL_PREFIX + card.titleimage}}" mode="widthFix"/>
+  <view class="card-grid {{choose? 'blur':''}}">
+    <view class="grid-item" wx:for="{{CONFIG}}" wx:for-item="card" bindtap="{{!choose? 'bindGetTicket':''}}" data-index='{{index}}'>
+      <image class="card-image" src="{{URL_PREFIX + card.titleimage}}" mode="widthFix" />
     </view>
   </view>
   <view class="footer">
-    <image class="footer" src="{{URL_PREFIX + 'footer.jpg'}}" mode="widthFix"/>
+    <image wx:if="{{URL_PREFIX}}" class="footer" src="{{URL_PREFIX + 'footer.jpg'}}" mode="widthFix" />
   </view>
   <cover-view class="cover-view" wx:if="{{choose}}">
-    <cover-image class="cover-image" src="{{URL_PREFIX + choose}}" mode="widthFix"/>
+    <cover-image class="cover-image" src="{{URL_PREFIX + choose}}" mode="widthFix" />
     <cover-view class="button-view left">
-      <button class="button" bindtap='bindReChoose' style="padding: 2rpx; width: 100%;">再次抽取</button>
+      <button class="button" bindtap='bindReChoose' style="width: 100%;">再次抽取</button>
     </cover-view>
-    <cover-view class="button-view right">
-      <button class="button" wx:if="{{isauth}}" bindtap='export' disabled='{{exportbtnDis}}' style="padding: 2rpx; width: 100%;">{{exportbtnText}}</button>
-      <button class="button" wx:if="{{!isauth}}" open-type="openSetting" bindtap='openSetting' style="padding: 2rpx; width: 100%;">请授权</button>
+    <cover-view wx:if="{{!hasUserInfo && canIUse}}" class="button-view right">
+      <button open-type="getUserInfo" bindgetuserinfo="getUserInfo" style="width: 100%;">{{exportbtnText}}</button>
+    </cover-view>
+    <cover-view wx:else class="button-view right">
+      <button class="button" wx:if="{{isauth}}" bindtap='bindExport' disabled='{{exportbtnDis}}' style="width: 100%;">{{exportbtnText}}</button>
+      <button class="button" wx:if="{{!isauth}}" open-type="openSetting" bindtap='openSetting' style="width: 100%;">请授权</button>
     </cover-view>
   </cover-view>
+  <view wx:if="{{outputConfig.backgroundsize}}" style='width:{{outputConfig.backgroundsize.width}}px;height:{{outputConfig.backgroundsize.height}}px;overflow:hidden;'>
+    <canvas style="width:{{outputConfig.backgroundsize.width}}px;height:{{outputConfig.backgroundsize.height}}px;" canvas-id="outputImg"></canvas>
+  </view>
 </view>

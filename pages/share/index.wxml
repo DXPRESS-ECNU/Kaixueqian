@@ -1,4 +1,0 @@
-<view
-  id="background"
-  style="width:100%;min-height:100%;background-image:url({{picUrl}});background-size:100% 100%;"
-/>
