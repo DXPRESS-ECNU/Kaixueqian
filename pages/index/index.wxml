@@ -15,14 +15,13 @@
       <button class="button" bindtap='bindReChoose' style="width: 100%;">再次抽取</button>
     </cover-view>
     <cover-view wx:if="{{!hasUserInfo && canIUse}}" class="button-view right">
-      <button open-type="getUserInfo" bindgetuserinfo="getUserInfo" style="width: 100%;">{{exportbtnText}}</button>
+      <button open-type="getUserInfo" bindgetuserinfo="getUserInfo" style="width: 100%;">分享图片</button>
     </cover-view>
     <cover-view wx:else class="button-view right">
-      <button class="button" wx:if="{{isauth}}" bindtap='bindExport' disabled='{{exportbtnDis}}' style="width: 100%;">{{exportbtnText}}</button>
-      <button class="button" wx:if="{{!isauth}}" open-type="openSetting" bindtap='openSetting' style="width: 100%;">请授权</button>
+      <button class="button" wx:if="{{exportbtnMode===1}}" bindtap='bindExport' style="width: 100%;">分享图片</button>
+      <button class="button" wx:if="{{exportbtnMode===2}}" bindtap='bindExport' disabled="true" style="width: 100%;">已保存</button>
+      <button class="button" wx:if="{{exportbtnMode===3}}" open-type="openSetting" bindtap='openSetting' style="width: 100%;">请授权</button>
     </cover-view>
   </cover-view>
-  <view wx:if="{{outputConfig.backgroundsize}}" style='width:{{outputConfig.backgroundsize.width}}px;height:{{outputConfig.backgroundsize.height}}px;overflow:hidden;'>
-    <canvas style="width:{{outputConfig.backgroundsize.width}}px;height:{{outputConfig.backgroundsize.height}}px;" canvas-id="outputImg"></canvas>
-  </view>
+  <painter palette="{{shareJson}}" bind:imgOK="bindSaveImage" customStyle="position: absolute; left: -9999rpx;"/>
 </view>
