@@ -3,10 +3,10 @@
     "pages/index/index"
   ],
   "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
-    "navigationBarTextStyle":"black"
+    "backgroundTextStyle":"dark",
+    "navigationBarBackgroundColor": "#452822",
+    "navigationBarTitleText": "大夏开学签",
+    "navigationBarTextStyle":"white"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"
