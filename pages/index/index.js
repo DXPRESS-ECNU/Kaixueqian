@@ -79,7 +79,7 @@ Page({
     var choose = items[Math.floor(Math.random() * items.length)]
     this.shareJson = this.data.CONFIG[id].share
     this.setData({
-      choose
+      choose : encodeURI(choose)
     })
     console.log(this.data.choose)
     console.log(this.data.outputConfig)
