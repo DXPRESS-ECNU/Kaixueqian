@@ -61,6 +61,15 @@ Page({
         })
       }
     }
+    wx.onUserCaptureScreen((res) => {
+      if (this.data.choose) {
+        wx.showToast({
+          title: '点击分享图片可以包含你的头像哦',
+          icon: 'none',
+          duration: 3000
+        })
+      }
+    })
   },
   getUserInfo: function(e) {
     console.log(e)
